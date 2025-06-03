@@ -239,3 +239,10 @@ scan_xlong.o
 socket_accept6.o
 socket_connect6.o
 socket_tcp6.o
+sig.o
+sig.a
+sig_catch.o
+sig_block.o
+hassgact.h
+hassgprm.h
+sig_pause.o
