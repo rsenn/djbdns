@@ -80,6 +80,8 @@ extern int dns_txt_packet(stralloc *,const char *,unsigned int);
 extern int dns_txt(stralloc *,const stralloc *);
 extern int dns_mx_packet(stralloc *,const char *,unsigned int);
 extern int dns_mx(stralloc *,const stralloc *);
+extern int dns_ns_packet(stralloc *,const char *,unsigned int);
+extern int dns_ns(stralloc *,const stralloc *);
 
 extern int dns_resolvconfrewrite(stralloc *);
 extern int dns_ip4_qualify_rules(stralloc *,stralloc *,const stralloc *,const stralloc *);

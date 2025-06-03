@@ -229,11 +229,11 @@ choose compile trydrent.c direntry.h1 direntry.h2
 
 dns.a: \
 makelib dns_dfd.o dns_domain.o dns_dtda.o dns_ip.o dns_ipq.o dns_mx.o \
-dns_name.o dns_nd.o dns_packet.o dns_random.o dns_rcip.o dns_rcrw.o \
+dns_name.o dns_nd.o dns_ns.o dns_packet.o dns_random.o dns_rcip.o dns_rcrw.o \
 dns_resolve.o dns_sortip.o dns_transmit.o dns_txt.o dns_ip6.o \
 dns_sortip6.o dns_nd6.o dns_ipq6.o
 	./makelib dns.a dns_dfd.o dns_domain.o dns_dtda.o dns_ip.o \
-	dns_ipq.o dns_mx.o dns_name.o dns_nd.o dns_packet.o \
+	dns_ipq.o dns_mx.o dns_name.o dns_nd.o dns_ns.o dns_packet.o \
 	dns_random.o dns_rcip.o dns_rcrw.o dns_resolve.o \
 	dns_sortip.o dns_transmit.o dns_txt.o dns_ip6.o dns_sortip6.o \
 	dns_nd6.o dns_ipq6.o
@@ -292,6 +292,11 @@ dns_nd6.o: \
 compile dns_nd6.c byte.h fmt.h dns.h stralloc.h gen_alloc.h iopause.h \
 taia.h tai.h uint64.h taia.h
 	./compile dns_nd6.c
+
+dns_ns.o: \
+compile dns_ns.c stralloc.h gen_alloc.h byte.h uint16.h dns.h \
+stralloc.h iopause.h taia.h tai.h uint64.h taia.h
+	./compile dns_ns.c
 
 dns_packet.o: \
 compile dns_packet.c error.h dns.h stralloc.h gen_alloc.h iopause.h \
@@ -447,6 +452,17 @@ dnsname.o: \
 compile dnsname.c buffer.h exit.h strerr.h ip4.h dns.h stralloc.h \
 gen_alloc.h iopause.h taia.h tai.h uint64.h taia.h ip6.h
 	./compile dnsname.c
+
+dnsns: \
+load dnsns.o iopause.o dns.a env.a libtai.a alloc.a buffer.a unix.a \
+byte.a socket.lib
+	./load dnsns iopause.o dns.a env.a libtai.a alloc.a \
+	buffer.a unix.a byte.a  `cat socket.lib`
+
+dnsns.o: \
+compile dnsns.c buffer.h exit.h strerr.h uint16.h byte.h str.h fmt.h \
+dns.h stralloc.h gen_alloc.h iopause.h taia.h tai.h uint64.h taia.h
+	./compile dnsns.c
 
 dnsq: \
 load dnsq.o iopause.o printrecord.o printpacket.o parsetype.o dns.a \
@@ -734,7 +750,7 @@ prog: \
 dnscache-conf dnscache walldns-conf walldns rbldns-conf rbldns \
 rbldns-data pickdns-conf pickdns pickdns-data tinydns-conf tinydns \
 tinydns-data tinydns-get tinydns-edit axfr-get axfrdns-conf axfrdns \
-dnsip dnsipq dnsname dnstxt dnsmx dnsfilter random-ip dnsqr dnsq \
+dnsip dnsipq dnsname dnsns dnstxt dnsmx dnsfilter random-ip dnsqr dnsq \
 dnstrace dnstracesort cachetest utime rts dnsip6 dnsip6q
 
 prot.o: \

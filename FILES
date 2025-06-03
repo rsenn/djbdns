@@ -41,6 +41,7 @@ dnsip.c
 dnsname.c
 dnstxt.c
 dnsmx.c
+dnsns.c
 dnsfilter.c
 random-ip.c
 dnsqr.c
@@ -84,6 +85,7 @@ dns_ipq.c
 dns_mx.c
 dns_name.c
 dns_nd.c
+dns_ns.c
 dns_packet.c
 dns_random.c
 dns_rcip.c
