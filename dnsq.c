@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "uint16.h"
 #include "strerr.h"
 #include "buffer.h"

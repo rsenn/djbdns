@@ -1,5 +1,9 @@
 #include "auto_home.h"
 
+void c(const char*, const char*, const char*, int, int, int);
+void h(const char*,  int, int, int);
+void d(const char*, const char*, int, int, int);
+
 void hier()
 {
   c("/","etc","dnsroots.global",-1,-1,0644);
