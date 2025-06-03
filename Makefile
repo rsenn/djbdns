@@ -4,6 +4,8 @@ SHELL=/bin/sh
 
 default: it
 
+include Makefile.sig
+
 alloc.a: \
 makelib alloc.o alloc_re.o getln.o getln2.o stralloc_cat.o \
 stralloc_catb.o stralloc_cats.o stralloc_copy.o stralloc_eady.o \
@@ -211,6 +213,9 @@ warn-auto.sh choose.sh conf-home
 	> choose
 	chmod 755 choose
 
+clean:
+	rm -f `cat TARGETS`
+
 compile: \
 warn-auto.sh conf-cc
 	( cat warn-auto.sh; \
@@ -344,10 +349,10 @@ stralloc.h iopause.h taia.h tai.h uint64.h taia.h
 dnscache: \
 load dnscache.o droproot.o okclient.o log.o cache.o query.o \
 response.o dd.o roots.o iopause.o prot.o dns.a env.a alloc.a buffer.a \
-libtai.a unix.a byte.a socket.lib
+libtai.a unix.a byte.a sig.a socket.lib
 	./load dnscache droproot.o okclient.o log.o cache.o \
 	query.o response.o dd.o roots.o iopause.o prot.o dns.a \
-	env.a alloc.a buffer.a libtai.a unix.a byte.a  `cat \
+	env.a alloc.a buffer.a libtai.a unix.a byte.a sig.a `cat \
 	socket.lib`
 
 dnscache-conf: \
@@ -1221,6 +1226,3 @@ tryip6.c choose compile haveip6.h1 haveip6.h2
 sockaddr_in6.h: \
 trysa6.c choose compile sockaddr_in6.h1 sockaddr_in6.h2 haveip6.h
 	./choose c trysa6 sockaddr_in6.h1 sockaddr_in6.h2 > sockaddr_in6.h
-
-clean:
-	rm -f `cat TARGETS`
