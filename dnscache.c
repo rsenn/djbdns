@@ -23,6 +23,7 @@
 #include "log.h"
 #include "okclient.h"
 #include "droproot.h"
+#include "sig.h"
 
 long interface;
 
@@ -388,6 +389,14 @@ static void doit(void)
   
 #define FATAL "dnscache: fatal: "
 
+void hup_me()
+{
+  if (!roots_init())
+    strerr_die2sys(111,FATAL,"unable to read servers: ");
+
+  log_reread();
+}
+
 char seed[128];
 
 int main()
@@ -455,6 +464,8 @@ int main()
 
   if (socket_listen(tcp53,20) == -1)
     strerr_die2sys(111,FATAL,"unable to listen on TCP socket: ");
+
+  sig_catch(sig_hangup, hup_me);
 
   log_startup();
   doit();
