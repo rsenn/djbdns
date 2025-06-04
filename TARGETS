@@ -106,6 +106,7 @@ dns_ipq6.o
 dns_mx.o
 dns_name.o
 dns_nd.o
+dns_ns.o
 dns_packet.o
 dns_random.o
 dns_rcip.o
@@ -189,6 +190,8 @@ dnstxt.o
 dnstxt
 dnsmx.o
 dnsmx
+dnsns.o
+dnsns
 dnsfilter.o
 sgetopt.o
 subgetopt.o

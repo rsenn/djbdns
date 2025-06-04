@@ -39,6 +39,7 @@ void hier()
   c(auto_home,"bin","dnsname",-1,-1,0755);
   c(auto_home,"bin","dnstxt",-1,-1,0755);
   c(auto_home,"bin","dnsmx",-1,-1,0755);
+  c(auto_home,"bin","dnsns",-1,-1,0755);
   c(auto_home,"bin","dnsfilter",-1,-1,0755);
   c(auto_home,"bin","random-ip",-1,-1,0755);
   c(auto_home,"bin","dnsqr",-1,-1,0755);
